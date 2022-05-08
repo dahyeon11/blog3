@@ -1,10 +1,15 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import useAjax from './hooks/useajax';
+import Header from './components/header';
+import GlobalStyle from './styles/global-style';
 
 function App() {
   return (
     <div className="App">
+      <GlobalStyle />
+      <Header />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
