@@ -4,12 +4,14 @@ import './App.css';
 import useAjax from './hooks/useajax';
 import Header from './components/header';
 import GlobalStyle from './styles/global-style';
+import Main from './pages/main';
 
 function App() {
   return (
     <div className="App">
       <GlobalStyle />
       <Header />
+      <Main />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>

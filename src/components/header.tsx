@@ -51,7 +51,7 @@ const Wrapper = styled.div`
 
     position: relative;
     margin: 0 auto;
-    max-width: 1700px;
+    max-width: 1100px;
 `
 
 const Left = styled.div`
