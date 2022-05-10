@@ -11,7 +11,7 @@ function Header() {
                 <Left>
                     <Logo>
                         <Title>
-                            Dahyeon's Blog
+                            다현이의 개발일기
                         </Title>
                     </Logo>
                 </Left>
@@ -42,6 +42,8 @@ const Container = styled.div`
     z-index: 1;
     background: #FFFFFF;
     padding: 10px 0;
+    border-bottom: 1px solid #e4e4e4;
+    border-radius: 40px;
 `
 
 const Wrapper = styled.div`
@@ -55,13 +57,13 @@ const Wrapper = styled.div`
 `
 
 const Left = styled.div`
-    min-width: 150px;
+    min-width: 100px;
 `
 
 const MiddleSearchInput = styled.div`
     font-family: 'Spoqa Han Sans Neo', 'sans-serif';
     position: relative;
-    width: 100%;
+    width: 80%; //사이즈 계산 필요
     overflow-x: clip;
     margin: 0 0 0 20px;
 `
@@ -77,26 +79,27 @@ const Right = styled.div`
 `
 
 const Logo = styled.div`
-    height: 38px;
+    height: 42px;
+    min-width: 230px;
     position: relative;
     overflow: hidden;
 `
 
 const Title = styled.span`
-    font-family: 'Nanum Brush Script', cursive;
-    font-weight: 400;
-    font-size: 28px;
-    margin: auto auto auto 20px;
-    line-height: 40px;
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+    font-weight: 500;
+    font-size: 17px;
+    margin: auto 20px auto 0;
+    line-height: 42px;
 `
 
 const InputContainer = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    border: 1px solid #ececec;
+    border: 1px solid #e4e4e4;
     border-radius: 40px;
-    height: 38px;
+    height: 42px;
     color: #000;
     position: relative;
     box-sizing: border-box;
