@@ -1,8 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
 import CardPost from '../components/cardPost';
+import { selector, useRecoilValue } from 'recoil';
+import axios, { AxiosResponse } from 'axios';
+
+
+interface Data {
+    a: string
+}
+type Response = AxiosResponse<Data>
+
+const getData = (): Promise<Response> => axios.get('https://api2.dahyeon.us/articles')
+
 
 function Main () {
+
+    const getRecentArticle = selector({
+        key: 'getRecentArticle',
+        get: async ({ get }) => {
+            const response = await getData();
+            return response.data;
+        }
+    })
 
     return (
         <Container className='Main' >
@@ -15,6 +34,8 @@ function Main () {
         </Container>
     )
 }
+
+
 
 const Container = styled.div`
     position: relative;

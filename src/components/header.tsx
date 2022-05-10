@@ -1,8 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ReactComponent as Icon } from '../img/search.svg'
+import { ReactComponent as Icon2 } from '../img/more-horizontal.svg'
+import MenuDropdown from './menuDropdown';
+import { useState } from 'react';
 
 function Header() {
+
+    const [ isOpen, setIsOpen ] = useState(false)
+
+    const menuDropdownToggle = () => {
+        setIsOpen(!isOpen)
+    }
 
     return (
         <>
@@ -24,6 +33,8 @@ function Header() {
                     </InputContainer>
                 </MiddleSearchInput>
                 <Right>
+                    <KebobIcon onClick={menuDropdownToggle} />
+                    <MenuDropdown isOpen={isOpen} />
 
                 </Right>
 
@@ -42,8 +53,8 @@ const Container = styled.div`
     z-index: 1;
     background: #FFFFFF;
     padding: 10px 0;
-    border-bottom: 1px solid #e4e4e4;
-    border-radius: 40px;
+    border-bottom: 2px solid #ececec;
+    border-radius: 1px;
 `
 
 const Wrapper = styled.div`
@@ -53,7 +64,7 @@ const Wrapper = styled.div`
 
     position: relative;
     margin: 0 auto;
-    max-width: 1100px;
+    max-width: 1000px;
 `
 
 const Left = styled.div`
@@ -72,14 +83,16 @@ const Right = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-width: 160px;
-    max-width: 160px;
-    padding: 0 100px;
+    width: 100px;
+    //min-width: 160px;
+    //max-width: 160px;
+    //padding: 0 100px;
     box-sizing: border-box;
+    margin: 0 0 0 20px;
 `
 
 const Logo = styled.div`
-    height: 42px;
+    height: 48px;
     min-width: 230px;
     position: relative;
     overflow: hidden;
@@ -90,7 +103,7 @@ const Title = styled.span`
     font-weight: 500;
     font-size: 17px;
     margin: auto 20px auto 0;
-    line-height: 42px;
+    line-height: 48px;
 `
 
 const InputContainer = styled.div`
@@ -99,7 +112,7 @@ const InputContainer = styled.div`
     align-items: center;
     border: 1px solid #e4e4e4;
     border-radius: 40px;
-    height: 42px;
+    height: 48px;
     color: #000;
     position: relative;
     box-sizing: border-box;
@@ -115,12 +128,19 @@ const SearchIcon = styled(Icon)`
     
 `
 
+const KebobIcon = styled(Icon2)`
+    width: 30px;
+    cursor: pointer;
+
+`
+
 const SearchBox = styled.input.attrs((props) => ({
     placeholder: '게시물 검색'
 }))`
     border: 0;
     background: 0 0;
     height: 100%;
+    width: 100%;
     padding-left: 10px;
     transition: all .2s;
     animation-name: fade;

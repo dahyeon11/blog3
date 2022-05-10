@@ -5,13 +5,26 @@ import useAjax from './hooks/useajax';
 import Header from './components/header';
 import GlobalStyle from './styles/global-style';
 import Main from './pages/main';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+import Login from './pages/login';
+
 
 function App() {
   return (
     <div className="App">
       <GlobalStyle />
       <Header />
-      <Main />
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Main />} />
+          <Route path='/signin' element={<Login />} />
+        </Routes>
+      </BrowserRouter>
+      
     </div>
   );
 }
