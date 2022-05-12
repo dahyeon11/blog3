@@ -1,38 +1,37 @@
 import React from 'react';
 import styled from 'styled-components';
 import CardPost from '../components/cardPost';
-import { selector, useRecoilValue } from 'recoil';
-import axios, { AxiosResponse } from 'axios';
+import { selector, useRecoilStateLoadable, useRecoilValue, useRecoilValueLoadable } from 'recoil';
+import { articlesQuery, articlesState } from '../states/articles'
+import { ArticlesType } from '../types';
 
+function Main (): JSX.Element {
 
-interface Data {
-    a: string
-}
-type Response = AxiosResponse<Data>
+    //const recentArticle = useRecoilValue(articlesQuery);
 
-const getData = (): Promise<Response> => axios.get('https://api2.dahyeon.us/articles')
+    const articlesLoadable = useRecoilValueLoadable(articlesQuery)
 
+    switch (articlesLoadable.state) {
+        case 'hasValue':
+            return (
+                <Container className='Main' >
+                    <Wrapper>
+                        {
+                            articlesLoadable.contents.map((elements: ArticlesType) => {
+                                return (
+                                    <CardPost data={elements}  key={`CardPost${elements.id}`} />    
+                                )
+                            })
+                        }
+                    </Wrapper>
+                </Container>
+            )
+            case 'loading':
+                return <div>Loading...</div>;
+            case 'hasError':
+                throw articlesLoadable.contents;
+    }
 
-function Main () {
-
-    const getRecentArticle = selector({
-        key: 'getRecentArticle',
-        get: async ({ get }) => {
-            const response = await getData();
-            return response.data;
-        }
-    })
-
-    return (
-        <Container className='Main' >
-            <Wrapper>
-                <CardPost />    
-                <CardPost />
-                <CardPost />
-                <CardPost />
-            </Wrapper>
-        </Container>
-    )
 }
 
 

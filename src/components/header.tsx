@@ -4,6 +4,8 @@ import { ReactComponent as Icon } from '../img/search.svg'
 import { ReactComponent as Icon2 } from '../img/more-horizontal.svg'
 import MenuDropdown from './menuDropdown';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import SearchResultDropdown from './searchResutDropdown';
 
 function Header() {
 
@@ -13,13 +15,15 @@ function Header() {
         setIsOpen(!isOpen)
     }
 
+    const navigate = useNavigate()
+
     return (
         <>
             <Container className='Header'>
             <Wrapper className='wrap flex'>
                 <Left>
                     <Logo>
-                        <Title>
+                        <Title onClick={() => navigate('/')}>
                             다현이의 개발일기
                         </Title>
                     </Logo>
@@ -31,6 +35,7 @@ function Header() {
                             
                         </SearchBox>
                     </InputContainer>
+                    <SearchResultDropdown keyword='12' />
                 </MiddleSearchInput>
                 <Right>
                     <KebobIcon onClick={menuDropdownToggle} />
@@ -104,6 +109,7 @@ const Title = styled.span`
     font-size: 17px;
     margin: auto 20px auto 0;
     line-height: 48px;
+    cursor: pointer;
 `
 
 const InputContainer = styled.div`

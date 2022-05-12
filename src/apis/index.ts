@@ -1,18 +1,19 @@
-import axios, { AxiosInstance } from "axios";
+import axios, { AxiosInstance, AxiosPromise } from "axios";
 
 const BASE_URL = 'api2.dahyeon.us';
 const token = ''
 
 
-const axiosApi: any = (url: string, options: {}) => {
+const axInstance: any = (url: string, options: {}) => {
     const instance = axios.create({
         baseURL: BASE_URL,
+        url: url,
         ...options
     })
     return instance
 }
 
-const axiosAuthApi = (url: string, options: {}): => {
+const axAuthInstance = (url: string, options: {}) => {
     const instance: AxiosInstance = axios.create({
         baseURL: BASE_URL,
         headers: {
@@ -23,4 +24,4 @@ const axiosAuthApi = (url: string, options: {}): => {
     return instance
 }
 
-export { axiosApi, axiosAuthApi }
+export { axInstance, axAuthInstance }

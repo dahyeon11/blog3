@@ -11,17 +11,19 @@ import {
   Route,
 } from "react-router-dom";
 import Login from './pages/login';
+import Article from './pages/article';
 
 
 function App() {
   return (
     <div className="App">
       <GlobalStyle />
-      <Header />
       <BrowserRouter>
+      <Header />
         <Routes>
           <Route path='/' element={<Main />} />
           <Route path='/signin' element={<Login />} />
+          <Route path='/article/:id' element={<Article />} />
         </Routes>
       </BrowserRouter>
       

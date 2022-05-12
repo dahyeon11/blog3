@@ -1,25 +1,33 @@
 import React from 'react';
 import styled from 'styled-components';
+import { ArticlesType } from '../types';
+import { useNavigate } from 'react-router-dom'
 
-function CardPost() {
+
+type CardPostProps = {
+    data: ArticlesType;
+}
+
+const CardPost: React.FC<CardPostProps> = ({data})  => {
+
+    const navigate = useNavigate();
 
     return (
         <>
-        <Wrapper>
+        <Wrapper onClick={() => navigate(`/article/${data.id}`)} >
             <ImgBox>
-            <Img img={'https://public.dahyeon.us/sample.jpg.jpg'} />
+            <Img img={data.thumbnail_image} />
             </ImgBox>
-
             <ContentBox>
                 <Content>
                 <ContentHeader>
-                콘텐츠 헤더
+                    {data.title}
                 </ContentHeader>
                 <ContentTitle>
-                React 에서 하위 컴포넌트의 상태 참조하기
+                    {data.title}
                 </ContentTitle>
                 <ContentBody>
-                콘텐츠 내용
+                    {data.content}
                 </ContentBody>
                 </Content>
             </ContentBox>
@@ -39,6 +47,12 @@ const Wrapper = styled.div`
     border: 1px solid #e4e4e4;
     border-radius: 1px;
     margin: 20px 0;
+    width: 1000px;
+    @media screen and (max-width: 768px) {
+        width: 600px;
+    }
+    cursor: pointer;
+
 `
 
 const ImgBox = styled.div`
@@ -47,7 +61,7 @@ const ImgBox = styled.div`
 `
 
 const ContentBox = styled.div`
-    
+    margin: 0 auto;
 `
 
 const Content = styled.div`
@@ -72,7 +86,8 @@ const ContentBody = styled.div`
 const Img = styled.div<{img: string}>`
     width: 100%;
     height: 100%;
-    background-image: url(${props => props.img})
+    background-image: url(${props => props.img});
+    overflow: hidden;
 `
 
 export default CardPost;

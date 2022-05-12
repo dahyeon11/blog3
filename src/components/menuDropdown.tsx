@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 interface MenuPropdownProps {
     isOpen: boolean;
@@ -7,11 +8,13 @@ interface MenuPropdownProps {
 
 function MenuDropdown(props: MenuPropdownProps) {
 
+    const navigate = useNavigate()
+
     return (
         <>  
             { props.isOpen && 
             <MenuContainer>
-                <MenuLabel>
+                <MenuLabel onClick={() => navigate('/signin')} >
                     로그인
                 </MenuLabel>
                 <MenuLabel>
