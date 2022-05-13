@@ -3,13 +3,33 @@ import styled from 'styled-components';
 import { ReactComponent as Icon } from '../img/search.svg'
 import { ReactComponent as Icon2 } from '../img/more-horizontal.svg'
 import MenuDropdown from './menuDropdown';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SearchResultDropdown from './searchResutDropdown';
+import { useRecoilValueLoadable, useRecoilValue,  useRecoilState } from 'recoil';
+import { searchArticlesQuery, keywordState } from  '../states/search'
 
 function Header() {
 
-    const [ isOpen, setIsOpen ] = useState(false)
+    const [ isOpen, setIsOpen ] = useState(false);
+    const [ searchResultVisible, setSearchResultVisible ] = useState(false);
+    const [ keyword, setKeyword ] = useRecoilState(keywordState);
+    //const [ searchResult, setSearchResult ] = React.useState<any>({})
+
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    const search = (e: React.KeyboardEvent) => {
+        if (e.key === 'Enter' && inputRef.current) {
+            console.log('전송')
+            setKeyword({ keyword: inputRef.current.value })
+            setSearchResultVisible(true)
+        }
+    }
+
+    const searchResult = useRecoilValueLoadable(searchArticlesQuery)
+
+
+    //const searchResultLoadable = useRecoilValueLoadable(searchArticlesQuery(keyword))
 
     const menuDropdownToggle = () => {
         setIsOpen(!isOpen)
@@ -31,11 +51,11 @@ function Header() {
                 <MiddleSearchInput>
                     <InputContainer>
                         <SearchIcon />
-                        <SearchBox>
+                        <SearchBox onKeyPress={search} ref={inputRef} >
                             
                         </SearchBox>
                     </InputContainer>
-                    <SearchResultDropdown keyword='12' />
+                    {searchResultVisible && <SearchResultDropdown searchResult={searchResult} searchResultVisible={searchResultVisible} setSearchResultVisible={setSearchResultVisible} />}
                 </MiddleSearchInput>
                 <Right>
                     <KebobIcon onClick={menuDropdownToggle} />

@@ -12,6 +12,7 @@ import {
 } from "react-router-dom";
 import Login from './pages/login';
 import Article from './pages/article';
+import TextEditor from './components/TextEditor';
 
 
 function App() {
@@ -23,7 +24,9 @@ function App() {
         <Routes>
           <Route path='/' element={<Main />} />
           <Route path='/signin' element={<Login />} />
-          <Route path='/article/:id' element={<Article />} />
+          <Route path='/article/:id' element={<Article />}>
+          </Route>
+          <Route path='/new' element={<TextEditor />} />
         </Routes>
       </BrowserRouter>
       

@@ -44,9 +44,10 @@ export const articleDetailsQuery = selectorFamily({
     get: (articleId: string | undefined) => async ({ get }) => {
         if(!articleId){
             articleId = '1'
-        }
-        const { data } = await axios.get(`https://api2.dahyeon.us/articles/${articleId}`)
-        return data
+        };
+        const { data } = await axios.get(`https://api2.dahyeon.us/articles/${articleId}`);
+        return data;
     }
 })
+
 
