@@ -1,17 +1,37 @@
-import React, { useState } from 'react';
+import { Editor, convertToRaw, ContentState } from 'draft-js';
+import React, { LegacyRef, useRef, useState, forwardRef } from 'react';
 import styled from 'styled-components';
 import DraftEditor from './draft/draftEditor';
+import EditorAside from './editorAside';
 
 const TextEditor: React.FC = () => {
+    const editorRef = useRef<Editor>(null)
+
+    //let contentState: ContentState
+
+    const submitHandler = () => {
+        let contentState: ContentState
+        if(editorRef.current && editorRef.current.props.editorState.getCurrentContent().getPlainText()) {
+            //위 조건의 뒷부분은 에디터에 아무 것도 입력되지 않았을 경우
+            //getPlainText()가 undefined를 반환하는 것을 이용하여 빈 게시글이 전송되는 경우를 방지
+            contentState = editorRef.current.props.editorState.getCurrentContent()
+            console.log(convertToRaw(contentState))
+            console.log(contentState.getPlainText())
+        }        
+    }
+
     return (
+        <>
         <Container>
-        <Editor>
+        <EditorArea>
           <TitleInput />
         <EditorBox>
-            <DraftEditor />
+            <DraftEditor ref={editorRef} />
         </EditorBox>
-        </Editor>
+        </EditorArea>
         </Container>
+        <EditorAside submitHandler={submitHandler} />
+        </>
 
     );
 };
@@ -20,7 +40,7 @@ const Container = styled.div`
     margin: 100px 0 0 0;
 `
 
-const Editor = styled.div`
+const EditorArea = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
