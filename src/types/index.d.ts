@@ -14,3 +14,13 @@ export interface ArticlesType {
     createdAt: string;
     updatedAt: string;
 }
+
+export interface UserType {
+    id: number;
+    name: string;
+    email: string;
+    nickname: string;
+    profile_image: string;
+    role: boolean;
+    createdAt: string;
+}
