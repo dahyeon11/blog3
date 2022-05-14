@@ -80,6 +80,9 @@ const Container = styled.div`
     padding: 10px 0;
     border-bottom: 2px solid #ececec;
     border-radius: 1px;
+    @media screen and (max-width: 768px) {
+        padding: 5px 0;
+    }
 `
 
 const Wrapper = styled.div`
@@ -94,6 +97,9 @@ const Wrapper = styled.div`
 
 const Left = styled.div`
     min-width: 100px;
+    @media screen and (max-width: 768px) {
+        min-width: 140px;
+    }
 `
 
 const MiddleSearchInput = styled.div`
@@ -102,6 +108,9 @@ const MiddleSearchInput = styled.div`
     width: 80%; //사이즈 계산 필요
     overflow-x: clip;
     margin: 0 0 0 20px;
+    @media screen and (max-width: 768px) {
+        margin: 0;
+    }
 `
 
 const Right = styled.div`
@@ -121,6 +130,10 @@ const Logo = styled.div`
     min-width: 230px;
     position: relative;
     overflow: hidden;
+    @media screen and (max-width: 768px) {
+        min-width: 140px;
+        height: 30px;
+    }
 `
 
 const Title = styled.span`
@@ -130,6 +143,11 @@ const Title = styled.span`
     margin: auto 20px auto 0;
     line-height: 48px;
     cursor: pointer;
+    @media screen and (max-width: 768px) {
+        font-size: 13px;
+        margin: 0;
+        line-height: 30px;
+    }
 `
 
 const InputContainer = styled.div`
@@ -144,6 +162,9 @@ const InputContainer = styled.div`
     box-sizing: border-box;
     overflow: hidden;
     max-width: 100%;
+    @media screen and (max-width: 768px) {
+        height: 35px;
+    }
 `
 
 const SearchIcon = styled(Icon)`

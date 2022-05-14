@@ -14,10 +14,10 @@ function MenuDropdown(props: MenuPropdownProps) {
         <>  
             { props.isOpen && 
             <MenuContainer>
-                <MenuLabel onClick={() => navigate('/signin')} >
+                <MenuLabel onClick={() => navigate('/signin')} key={`menu-signup`} >
                     로그인
                 </MenuLabel>
-                <MenuLabel>
+                <MenuLabel onClick={() => navigate('/article/new')} key={`menu-post-article`} >
                     글쓰기
                 </MenuLabel>
 

@@ -25,7 +25,10 @@ const Article: React.FC<ArticleProps> = () => {
             `urlParam은 ${articleId}`             
             )}
             {articleDetailsLoadable.state === 'hasValue' && articleDetailsLoadable.contents[0].title}
-            {articleDetailsLoadable.contents.title}
+            <div>
+            {articleDetailsLoadable.state === 'hasValue' && articleDetailsLoadable.contents[0].content}
+            </div>
+            
             </Test>
         </div>
         </>

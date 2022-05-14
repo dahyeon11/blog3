@@ -24,7 +24,9 @@ function App() {
         <Routes>
           <Route path='/' element={<Main />} />
           <Route path='/signin' element={<Login />} />
-          <Route path='/article/:id' element={<Article />}>
+          <Route path='/article'>
+            <Route path='/article/new' element={<TextEditor />} />
+            <Route path='/article/:id' element={<Article />} />
           </Route>
           <Route path='/new' element={<TextEditor />} />
         </Routes>

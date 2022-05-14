@@ -12,7 +12,7 @@ interface ArticleType {
 type SearchResultDropdownProps = {
     searchResult: Loadable<ArticleType[]>
     searchResultVisible: boolean
-    setSearchResultVisible: any
+    setSearchResultVisible: React.Dispatch<boolean>
 };
 
 const SearchResultDropdown: React.FC<SearchResultDropdownProps> = (props) => {
@@ -39,7 +39,10 @@ const SearchResultDropdown: React.FC<SearchResultDropdownProps> = (props) => {
                     props.searchResult.state === 'hasValue' && props.searchResult.contents.map((elements, index)=> {
                         return (
                             <>
-                            <ResultBox onClick={() => navigate(`/article/${elements.id}`)} >
+                            <ResultBox onClick={() => {
+                                navigate(`/article/${elements.id}`)
+                                props.setSearchResultVisible(false)
+                                }} >
                                 <ResultTitle>
                                     <ResultTitleLine>
                                         {index+1}. {elements.title}

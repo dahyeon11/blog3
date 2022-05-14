@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import { ArticlesType } from '../types';
 import { useNavigate } from 'react-router-dom'
 
+import moment from 'moment'
+import "moment/locale/ko";
+moment.locale('ko')
 
 type CardPostProps = {
     data: ArticlesType;
@@ -21,7 +24,7 @@ const CardPost: React.FC<CardPostProps> = ({data})  => {
             <ContentBox>
                 <Content>
                 <ContentHeader>
-                    {data.title}
+                    {moment(data.createdAt).format('YYYY. MM. DD')}
                 </ContentHeader>
                 <ContentTitle>
                     {data.title}
@@ -56,6 +59,8 @@ const Wrapper = styled.div`
 `
 
 const ImgBox = styled.div`
+    min-width: 320px;
+    min-height: 240px;
     width: 320px;
     height: 240px;
 `
@@ -80,7 +85,7 @@ const ContentTitle = styled.div`
 
 
 const ContentBody = styled.div`
-    
+    overflow-x: hidden;
 `
 
 const Img = styled.div<{img: string}>`
