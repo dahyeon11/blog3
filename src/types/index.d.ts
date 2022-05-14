@@ -9,6 +9,7 @@ export interface ArticlesType {
     category_id: number;
     title: string;
     content: string;
+    editorState: JSON;
     thumbnail_image: string;
     createdAt: string;
     updatedAt: string;
