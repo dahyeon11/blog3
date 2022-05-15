@@ -23,9 +23,11 @@ const Aside = styled.div`
   align-items: center;
   position: fixed;
   height: 60px;
-  width: 100%;
-  padding: 0 70px;
+  //width: 100%;
+  padding: 0 20px;
   bottom: 0px;
+  right: 0px;
+  left: 0px;
   background-color: #F0F0F0;
 `
 

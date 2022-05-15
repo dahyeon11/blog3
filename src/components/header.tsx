@@ -18,7 +18,7 @@ function Header() {
 
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const search = (e: React.KeyboardEvent) => {
+    const search = (e: React.KeyboardEvent<HTMLDivElement>) => {
         if (e.key === 'Enter' && inputRef.current) {
             console.log('전송')
             setKeyword({ keyword: inputRef.current.value })

@@ -9,7 +9,7 @@ export interface ArticlesType {
     category_id: number;
     title: string;
     content: string;
-    editorState: JSON;
+    raw_contentstate: JSONValue;
     thumbnail_image: string;
     createdAt: string;
     updatedAt: string;
@@ -24,3 +24,10 @@ export interface UserType {
     role: boolean;
     createdAt: string;
 }
+
+export type JSONValue =
+    | string
+    | number
+    | boolean
+    | { [x: string]: JSONValue }
+    | Array<JSONValue>;

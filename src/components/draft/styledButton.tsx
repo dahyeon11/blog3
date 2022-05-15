@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import styled from 'styled-components';
 
 type styleButtonProps = {
     onToggle: any
@@ -8,20 +9,23 @@ type styleButtonProps = {
 }
 
 const StyleButton: React.FC<styleButtonProps> = (props) => {
-    let className = 'RichEditor-styleButton';
-    if (props.active) {
-      className += ' RichEditor-activeButton';
-    }
-
-    const onToggle = (e: React.MouseEvent) => {
+    const onToggle = (e: React.MouseEvent<HTMLSpanElement>) => {
         e.preventDefault();
         props.onToggle(props.style)
     }
     return (
-        <span className={className} onMouseDown={onToggle}>
+        <Button onMouseDown={onToggle} active={props.active}>
           {props.label}
-        </span>
+        </Button>
     )
 }
+
+const Button = styled.span<{active: boolean}>`
+    color: ${props => props.active ? "#5890FF" : "#999"};
+    cursor: pointer;
+    margin-right: 16px;
+    padding: 2px 0;
+    display: inline-block;
+`
 
 export default StyleButton;
