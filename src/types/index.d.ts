@@ -25,6 +25,17 @@ export interface UserType {
     createdAt: string;
 }
 
+export interface CommentsType {
+    id: number;
+    user_id: number;
+    guest_name: string;
+    guest_password: string;
+    content: string;
+    image: string;
+    createdAt: string;
+    updatedAt: string;
+}
+
 export type JSONValue =
     | string
     | number

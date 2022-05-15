@@ -6,6 +6,7 @@ import { articleDetailsQuery, articlesState } from '../states/articles'
 import { ArticlesType } from '../types';
 import DraftViewer from "../components/draft/draftViewer";
 import moment from "moment";
+import Comment from '../components/comment'
 
 
 type ArticleProps = {
@@ -22,7 +23,6 @@ const Article: React.FC<ArticleProps> = () => {
     switch (articleDetailsLoadable.state) {
         case 'hasValue':
             const article = articleDetailsLoadable.contents[0]
-            console.log(article)
           return (
               <>
                 <MainContainer>
@@ -44,7 +44,10 @@ const Article: React.FC<ArticleProps> = () => {
              </ContentWrapper>
              <ContentFooter>
                  {/* 컨텐츠 최하단 구역 */}
-                 {/*<Comment article_id={article.id} />*/}
+                 <CommentBox>
+                 <Comment commentsData={article.article_has_comment} article_id={article.id} />
+                 </CommentBox>
+                 
 
              </ContentFooter>
              </ConetntArea>
@@ -107,7 +110,12 @@ const ContentWrapper = styled.div`
 `
 
 const ContentFooter = styled.div`
-    display:flex;
+    display: flex;
+    flex-direction: column;
+`
+
+const CommentBox = styled.div`
+    text-align: left;
 `
 
 const AreaTitle = styled.div`
